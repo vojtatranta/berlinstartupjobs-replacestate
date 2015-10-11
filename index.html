@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+<a class="load-more-link tappable no-ajax" href="javascript:return false;" rel="/engineering/page/7/">
+  Load more from this category…
+</a>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+(function(win, doc, $, undefined) {
+  
+    var handleLoadMoreClick = function(e) {
+      e.preventDefault();
+      var url = this.rel;
+      
+      handleHistoryState(url, win.history);
+      
+      //make your ajax call
+    }
+    
+    var handleHistoryState = function(url, history) {
+      if (history.replaceState) { 
+        history.replaceState({}, doc.title, url);
+      }
+    }    
+    
+    $(doc).on('click', '.load-more-link', handleLoadMoreClick);
+    
+})(window, document, jQuery);
+</script>
+</html>
